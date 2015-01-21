@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'rest-client'
 require 'json'
+require "vine"
 
 # set API token and URL
 token = "$2y$10$Zx.LEihxwRd25tKwTsR1weBs3naVcP0xEhOOk9tIZSXjqBJgiZoq6"
@@ -27,11 +28,28 @@ result = JSON.parse(open(uri).read)
 # puts JSON.pretty_generate result
 # puts result
 # data = JSON.load result
-puts result["result"]
+# puts result["result"] # => success
 # @conversation = result["conversations"]
 # @state = result["conversations"]["state"]
 # puts @conversation
 # puts @state
+# @state = result[:conversation] && result[:conversation][:state]
+# puts result.access("conversations.0")
+# puts @state
+
+# puts result["conversation"]
+# puts result["recipients"]
+# puts result["messages"]
+
+result["conversations"].each do |conversation|
+  puts conversation["conversation"]["id"]
+  puts conversation["conversation"]["subject"]
+  puts conversation["conversation"]["state"]
+  puts conversation["conversation"]["messenger_list"]
+  conversation["recipients"].each do |recipient|
+    puts recipient
+  end
+end
 
 
 
