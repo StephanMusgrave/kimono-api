@@ -1,6 +1,6 @@
 require 'open-uri'
 require 'rest-client'
-require 'JSON'
+require 'json'
 
 # set API token and URL
 token = "$2y$10$Zx.LEihxwRd25tKwTsR1weBs3naVcP0xEhOOk9tIZSXjqBJgiZoq6"
@@ -12,12 +12,9 @@ polling_url = "https://api.usekimono.com/api/1/conversation/list"
 # Specify request parameters
 params = {
   token: token,
-  conversation_id: conversation_id
+  conversation_id: conversation_id,
+  retvals: "messenger_list,position_date"
 }
-
-# puts token
-# puts conversation_id
-# puts polling_url
 
 # Prepare API request
 uri = URI.parse(polling_url)
@@ -27,6 +24,14 @@ uri.query = URI.encode_www_form(params)
 result = JSON.parse(open(uri).read)
 
 # Display results to screen
-puts JSON.pretty_generate result
-
+# puts JSON.pretty_generate result
+# puts result
 # data = JSON.load result
+puts result["result"]
+# @conversation = result["conversations"]
+# @state = result["conversations"]["state"]
+# puts @conversation
+# puts @state
+
+
+
