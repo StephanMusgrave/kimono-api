@@ -28,28 +28,23 @@ result = JSON.parse(open(uri).read)
 # puts JSON.pretty_generate result
 # puts result
 # data = JSON.load result
-# puts result["result"] # => success
-# @conversation = result["conversations"]
-# @state = result["conversations"]["state"]
-# puts @conversation
-# puts @state
-# @state = result[:conversation] && result[:conversation][:state]
-# puts result.access("conversations.0")
-# puts @state
-
-# puts result["conversation"]
-# puts result["recipients"]
-# puts result["messages"]
+# puts data
 
 result["conversations"].each do |conversation|
-  puts conversation["conversation"]["id"]
-  puts conversation["conversation"]["subject"]
-  puts conversation["conversation"]["state"]
-  puts conversation["conversation"]["messenger_list"]
+  puts "conversation_id: #{conversation["conversation"]["id"]}"
+  puts "subject:         #{conversation["conversation"]["subject"]}"
+  puts "state:           #{conversation["conversation"]["state"]}"
+  puts "messenger_list:  #{conversation["conversation"]["messenger_list"]}"
+  # puts "user:            #{conversation["recipient"][0]["full_name"]}"
+
   conversation["recipients"].each do |recipient|
-    puts recipient
+  # puts "...."
+    # puts "participant: #{recipient}"
+    puts "participant:  #{recipient[0]}" if recipient[0]
+    # puts "group: #{recipient[1]}" if recipient[1] 
+    # puts "bot:   #{recipient[2]}" if recipient[2] 
   end
+  puts '------------------------'
+  puts '------------------------'
+
 end
-
-
-
