@@ -4,9 +4,7 @@
 
 ## How to run it
 ```sh
-git clone git@github.com:StephanMusgrave/CraigsList_Scraper.git
-cd craigslist_scraper
-rails s
+git clone git@github.com:StephanMusgrave/kimono-api.git
 
 ```
 
